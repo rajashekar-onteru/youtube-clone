@@ -4,14 +4,17 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter } from "react-router-dom";
+import { ContextProvider } from "./ContextAPI/ContextProvider";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <div style={{ width: "99vw", overflowX: "hidden" }}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <ContextProvider>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </ContextProvider>
     </div>
   </React.StrictMode>
 );

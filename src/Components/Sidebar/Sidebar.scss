@@ -9,9 +9,20 @@
 .expanded-sidebar {
   width: 120px !important;
 }
+.expanded-sidebar-icons {
+  @extend .sidebar-icons;
+  display: flex;
+  flex-direction: row !important;
+  font-size: 14px !important;
+  font-weight: 400;
+  justify-content: flex-start !important;
+  height: 50px !important;
+  padding: 0 10px 0 25px !important;
+  border-radius: 15px !important;
+}
 .sidebar-icons {
   font-family: Roboto, sans-serif !important;
-  font-size: 10px !important;
+  font-size: 10px;
   font-weight: 400;
   height: 76px;
   width: 100%;

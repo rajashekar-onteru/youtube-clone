@@ -5,3 +5,16 @@
   width: 87vw;
   margin: 30px auto;
 }
+.video-on-expand-sidebar {
+  margin-left: 20px !important;
+}
+@media (max-width: 550px) {
+}
+
+@media (max-width: 950px) and (min-width: 550px) {
+}
+@media (max-width: 1200px) and (min-width: 950px) {
+  .play-container {
+    width: 84vw;
+  }
+}

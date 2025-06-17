@@ -1,6 +1,8 @@
+import { useApp } from "../../../ContextAPI/ContextProvider";
 import "../Feed/Feed.scss";
 import { VideoCard } from "./VideoCard";
-export const Feed = ({ expand }) => {
+export const Feed = () => {
+  const { expand } = useApp();
   return (
     <div
       className={

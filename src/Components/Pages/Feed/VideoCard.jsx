@@ -1,12 +1,37 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { videosData } from "./FeedData";
 import { altImg } from "../../../assets/altImg";
-import { Link } from "react-router-dom";
 export const VideoCard = () => {
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
+  const handleClick = (videoId) => {
+    setLoading(true);
+    setTimeout(() => {
+      window.scrollTo({ top: 0 });
+      navigate(`/video/${videoId}`);
+      setLoading(false);
+    }, 500);
+  };
+
   return (
     <>
+      {loading && (
+        <div className="video-loading-overlay">
+          <div className="video-dots-loader">
+            <div className="video-dot"></div>
+            <div className="video-dot"></div>
+            <div className="video-dot"></div>
+          </div>
+        </div>
+      )}
       {videosData.map((video) => (
         <div className="video-container" key={video.id}>
-          <Link className="video-classname" to={`/video/${video.id}`}>
+          <div
+            className="video-classname"
+            onClick={() => handleClick(video.id)}
+          >
             <div className="thumbnail-class">
               <img className="thumbnails" src={video.image} alt={altImg} />
               <div className="overlay">
@@ -15,7 +40,7 @@ export const VideoCard = () => {
               </div>
             </div>
             <span className="video-duration">{video.duration}</span>
-          </Link>
+          </div>
           <div className="video-description">
             <img className="channel_image" src={video.logo} alt={altImg} />
             <div className="video-content">

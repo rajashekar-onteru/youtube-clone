@@ -2,8 +2,9 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { videosData } from "./FeedData";
 import { altImg } from "../../../assets/altImg";
+import { useApp } from "../../../ContextAPI/ContextProvider";
 export const VideoCard = () => {
-  const [loading, setLoading] = useState(false);
+  const { loading, setLoading } = useApp();
   const navigate = useNavigate();
 
   const handleClick = (videoId) => {

@@ -5,18 +5,24 @@ import subscriptions_icon from "../../assets/sidebar_icons/subscriptions_icon.sv
 import your_info_icon from "../../assets/sidebar_icons/your_info_icon.svg";
 import downloads_icon from "../../assets/sidebar_icons/downloads_icon.svg";
 import { altImg } from "../../assets/altImg.js";
-export const Sidebar = ({ expand }) => {
+import { useApp } from "../../ContextAPI/ContextProvider.jsx";
+import { Link } from "react-router-dom";
+export const Sidebar = () => {
+  const { expand } = useApp();
+  const icons_class = expand ? "expanded-sidebar-icons" : "sidebar-icons";
   return (
     <div className={expand ? "sidebar expanded-sidebar" : "sidebar"}>
-      <div className="sidebar-icons">
-        <img src={home_icon} alt={altImg} />
-        <span>Home</span>
-      </div>
-      <div className="sidebar-icons">
+      <Link to="/" className="your-info-icon">
+        <div className={icons_class}>
+          <img src={home_icon} alt={altImg} />
+          Home
+        </div>
+      </Link>
+      <div className={icons_class}>
         <img src={shorts} alt={altImg} />
         <span>Shorts</span>
       </div>
-      <div className="sidebar-icons">
+      <div className={icons_class}>
         <img src={subscriptions_icon} alt={altImg} />
         <span>Subscriptions</span>
       </div>
@@ -25,12 +31,12 @@ export const Sidebar = ({ expand }) => {
         rel="nofollow"
         className="your-info-icon"
       >
-        <div className="sidebar-icons">
-          <img className="your-info-icon" src={your_info_icon} alt={altImg} />
+        <div className={icons_class}>
+          <img src={your_info_icon} alt={altImg} />
           You
         </div>
       </a>
-      <div className="sidebar-icons">
+      <div className={icons_class}>
         <img src={downloads_icon} alt={altImg} />
         <span>Downloads</span>
       </div>

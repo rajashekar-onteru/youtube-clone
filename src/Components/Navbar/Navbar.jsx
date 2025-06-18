@@ -7,8 +7,10 @@ import settings_icon from "../../assets/navbar_logos/settings_icon.svg";
 import profile_icon from "../../assets/navbar_logos/profile_icon.svg";
 import { altImg } from "../../assets/altImg.js";
 import { Link } from "react-router-dom";
+import { useApp } from "../../ContextAPI/ContextProvider.jsx";
 
-export const Navbar = ({ expand, setExpand }) => {
+export const Navbar = () => {
+  const { expand, setExpand } = useApp();
   return (
     <div className="navbar">
       <div className="youtube-header">

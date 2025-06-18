@@ -47,6 +47,9 @@
 .video-dot:nth-child(3) {
   animation-delay: 0s;
 }
+.sidebar-expand {
+  margin-left: 70px !important;
+}
 @keyframes bounceDot {
   0%,
   80%,

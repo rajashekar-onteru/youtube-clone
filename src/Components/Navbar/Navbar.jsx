@@ -8,12 +8,38 @@ import profile_icon from "../../assets/navbar_logos/profile_icon.svg";
 import { altImg } from "../../assets/altImg.js";
 import { Link } from "react-router-dom";
 import { useApp } from "../../ContextAPI/ContextProvider.jsx";
+import { useState } from "react";
+import { videosData } from "../Pages/Feed/FeedData.js";
 
 export const Navbar = () => {
   const { expand, setExpand } = useApp();
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [suggestions, setSuggestions] = useState([]);
+
+  const handleSearchChange = (e) => {
+    const value = e.target.value;
+    const filtered = videosData?.filter((video) =>
+      video.title.toLowerCase().includes(value.toLowerCase())
+    );
+    setSuggestions(value ? filtered : []);
+  };
+
+  const debounce = (func, delay) => {
+    let timeoutId;
+    return function (...args) {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      timeoutId = setTimeout(() => {
+        func.apply(this, args); // ✅ Use apply to pass correct context and arguments
+      }, delay);
+    };
+  };
+
+  const debouncedHandleSearchChange = debounce(handleSearchChange, 300);
   return (
     <div className="navbar">
-      <div className="youtube-header">
+      <div className={`youtube-header ${isSearchOpen ? "search-active" : ""}`}>
         <div className="first-section">
           <img
             src={hamburger_icon}
@@ -29,17 +55,44 @@ export const Navbar = () => {
         </div>
         <div className="middle-section">
           <div className="search-div">
-            <input type="text" className="search-bar" placeholder="Search" />
-            <button className="search-icon">
+            <input
+              type="text"
+              className="search-bar"
+              placeholder="Search"
+              // value={query}
+              onChange={debouncedHandleSearchChange}
+            />
+            <button
+              className="search-icon"
+              onClick={() => setIsSearchOpen(true)}
+            >
               <img src={search_icon} alt={altImg} />
             </button>
             <button className="mic-icon">
               <img src={mic_icon} alt={altImg} />
             </button>
+            <div className="suggestions-list">
+              {suggestions.length > 0 && (
+                <ul style={{ paddingLeft: "10px" }}>
+                  {suggestions.map((item) => (
+                    <li
+                      key={item.id}
+                      className="suggestion-item"
+                      onClick={() =>
+                        window.location.replace(`/video/${item.id}`)
+                      }
+                    >
+                      {item.title}
+                    </li>
+                  ))}
+                </ul>
+              )}{" "}
+            </div>
           </div>
+          {/* 🔽 Suggestions Dropdown */}
         </div>
         <div className="last-section">
-          <div>
+          <div className="settings">
             <img
               src={settings_icon}
               style={{ cursor: "pointer" }}
@@ -49,7 +102,7 @@ export const Navbar = () => {
           <div className="profile-section">
             <img src={profile_icon} alt={altImg} />
             <a
-              href="https://accounts.google.com/ServiceLogin?service=youtube&amp;uilel=3&amp;passive=true&amp;continue=https%3A%2F%2Fwww.youtube.com%2Fsignin%3Faction_handle_signin%3Dtrue%26app%3Ddesktop%26hl%3Den%26next%3Dhttps%253A%252F%252Fwww.youtube.com%252Fresults%253Fsearch_query%253Dgst%252Bregistration&amp;hl=en&amp;ec=65620"
+              href="https://accounts.google.com/ServiceLogin?service=youtube"
               rel="nofollow"
               className="sign-in-link"
             >

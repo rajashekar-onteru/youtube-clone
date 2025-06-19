@@ -6,6 +6,7 @@
     justify-content: space-between;
     padding: 5px 14px 0px 14px;
     background-color: white;
+    box-shadow: 1px 2px 3px rgb(0, 0, 0, 0.05);
     height: 55px;
     position: fixed;
     top: 0;
@@ -191,7 +192,8 @@
       }
       .search-icon {
         width: 40px !important;
-        height: 37px !important;
+        height: 36.6px !important;
+        border-radius: 0 22px 22px 0 !important;
       }
       .mic-icon {
         display: none !important;

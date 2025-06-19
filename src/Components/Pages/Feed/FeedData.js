@@ -107,7 +107,7 @@ export const videosData = [
     video: Ocean_Water_video,
   },
   {
-    id: 1,
+    id: 9,
     image: Deers,
     duration: "0:20",
     title: "Whispers in the Snow | Deers of the Northern Wild",
@@ -118,7 +118,7 @@ export const videosData = [
     video: Deers_video,
   },
   {
-    id: 2,
+    id: 10,
     image: Elephants,
     duration: "0:22",
     title: "Giants of the Jungle | Elephants in Action",
@@ -129,7 +129,7 @@ export const videosData = [
     video: Elephant_park_video,
   },
   {
-    id: 3,
+    id: 11,
     image: Fish,
     duration: "0:08",
     title: "Underwater Symphony | Life Beneath the Surface",
@@ -140,7 +140,7 @@ export const videosData = [
     video: Fish_video,
   },
   {
-    id: 4,
+    id: 12,
     image: Forest,
     duration: "0:37",
     title: "Breath of the Highlands | Whispers from the Forest",
@@ -151,7 +151,7 @@ export const videosData = [
     video: Forest_video,
   },
   {
-    id: 5,
+    id: 13,
     image: Tortoise,
     duration: "0:28",
     title: "Slow and Steady | The Journey of a Tortoise",
@@ -162,7 +162,7 @@ export const videosData = [
     video: Turtoise_video,
   },
   {
-    id: 6,
+    id: 14,
     image: Women,
     duration: "0:25",
     title: "Her Lens on Nature | Wildlife Through Her Eyes",
@@ -174,7 +174,7 @@ export const videosData = [
   },
 
   {
-    id: 7,
+    id: 15,
     image: Wild_Buffallo,
     duration: "0:20",
     title: "Battle of the Herds | Wild Buffalo in the Wild",
@@ -186,7 +186,7 @@ export const videosData = [
   },
 
   {
-    id: 8,
+    id: 16,
     image: Ocean_Water,
     duration: "0:35",
     title: "Endless Blue | The Dance of Ocean Waves",

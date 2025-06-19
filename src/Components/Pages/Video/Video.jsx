@@ -12,7 +12,11 @@ export const Video = () => {
   const { expand } = useApp();
   return (
     <div
-      className={expand ? "sidebar-expand play-container" : "play-container"}
+      className={
+        expand
+          ? "play-container-on-expand-sidebar play-container"
+          : "play-container"
+      }
     >
       {item ? (
         <>

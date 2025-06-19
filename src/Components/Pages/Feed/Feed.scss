@@ -108,7 +108,7 @@
       background-color: rgb(96, 96, 96);
       color: white;
     }
-    .vedio-views {
+    .video-views {
       display: flex;
       gap: 5px;
       font-weight: 400;
@@ -116,6 +116,7 @@
       color: rgb(96, 96, 96);
       vertical-align: top;
       margin-top: 7px;
+      flex-direction: column;
     }
     .video-age::before {
       color: rgb(96, 96, 96);

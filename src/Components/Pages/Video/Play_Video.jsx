@@ -21,7 +21,7 @@ const Play_Video = ({ videoId }) => {
           <p>
             {item.views} &nbsp; &bull; {item.age}
           </p>
-          <div>
+          <div className="play-video-actions">
             <span>
               <img src={like} alt={altImg} />
               1499

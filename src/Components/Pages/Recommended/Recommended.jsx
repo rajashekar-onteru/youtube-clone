@@ -7,7 +7,9 @@ export const Recommended = () => {
   return (
     <div
       className={
-        expand ? "video-on-expand-sidebar scroll-container" : "scroll-container"
+        expand
+          ? "video-cards-on-expand-sidebar scroll-container"
+          : "scroll-container"
       }
     >
       <VideoCard />

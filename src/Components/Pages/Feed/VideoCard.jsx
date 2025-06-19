@@ -6,11 +6,12 @@ import { useApp } from "../../../ContextAPI/ContextProvider";
 export const VideoCard = () => {
   const { loading, setLoading } = useApp();
   const navigate = useNavigate();
-
+  const { setExpand } = useApp();
   const handleClick = (videoId) => {
     setLoading(true);
     setTimeout(() => {
       window.scrollTo({ top: 0 });
+      setExpand(true);
       navigate(`/video/${videoId}`);
       setLoading(false);
     }, 500);
@@ -46,10 +47,12 @@ export const VideoCard = () => {
             <img className="channel_image" src={video.logo} alt={altImg} />
             <div className="video-content">
               <p className="video-title">{video.title}</p>
-              <p className="channel">{video.channel}</p>
-              <div className="vedio-views">
-                <p>{video.views}</p>
-                <p className="video-age">{video.age}</p>
+              <div className="video-views">
+                <p className="channel">{video.channel}</p>
+                <div style={{ display: "flex", gap: "5px" }}>
+                  <p>{video.views}</p>
+                  <p className="video-age">{video.age}</p>
+                </div>
               </div>
             </div>
           </div>

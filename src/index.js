@@ -9,7 +9,7 @@ import { ContextProvider } from "./ContextAPI/ContextProvider";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <div style={{ width: "99vw", overflowX: "hidden" }}>
+    <div style={{ overflowX: "hidden" }}>
       <ContextProvider>
         <BrowserRouter>
           <App />

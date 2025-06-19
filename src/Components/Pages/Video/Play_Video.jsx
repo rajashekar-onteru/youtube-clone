@@ -6,14 +6,23 @@ import profile from "../../../assets/play_video/profile.jpg";
 
 import { altImg } from "../../../assets/altImg.js";
 import { videosData } from "../Feed/FeedData.js";
+import { useApp } from "../../../ContextAPI/ContextProvider.jsx";
+import { useEffect } from "react";
 
 const Play_Video = ({ videoId }) => {
   const item = videosData.find((v) => v?.id?.toString() === videoId);
-
-  if (!item) return <div>Video not found</div>;
-
+  const { isSearchOpen, setIsSearchOpen } = useApp();
+  useEffect(() => {
+    return () => {
+      setIsSearchOpen(false);
+    };
+  }, []);
   return (
-    <div className="play-video">
+    <div
+      className={`play-video ${
+        isSearchOpen ? "play-video-on-search-active" : ""
+      }`}
+    >
       <div className="video-section">
         <video className="video-class" controls autoPlay src={item?.video} />
         <h2>{item.title}</h2>

@@ -5,6 +5,7 @@ import search_icon from "../../assets/navbar_logos/search_icon.svg";
 import mic_icon from "../../assets/navbar_logos/mic_icon.svg";
 import settings_icon from "../../assets/navbar_logos/settings_icon.svg";
 import profile_icon from "../../assets/navbar_logos/profile_icon.svg";
+import back_arrow from "../../assets/navbar_logos/back_arrow.svg";
 import { altImg } from "../../assets/altImg.js";
 import { Link } from "react-router-dom";
 import { useApp } from "../../ContextAPI/ContextProvider.jsx";
@@ -12,8 +13,7 @@ import { useState } from "react";
 import { videosData } from "../Pages/Feed/FeedData.js";
 
 export const Navbar = () => {
-  const { expand, setExpand } = useApp();
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const { expand, setExpand, isSearchOpen, setIsSearchOpen } = useApp();
   const [suggestions, setSuggestions] = useState([]);
 
   const handleSearchChange = (e) => {
@@ -54,12 +54,19 @@ export const Navbar = () => {
           </Link>
         </div>
         <div className="middle-section">
+          {isSearchOpen && (
+            <img
+              onClick={() => setIsSearchOpen(false)}
+              src={back_arrow}
+              className="back-arrow"
+              alt={altImg}
+            />
+          )}
           <div className="search-div">
             <input
               type="text"
               className="search-bar"
               placeholder="Search"
-              // value={query}
               onChange={debouncedHandleSearchChange}
             />
             <button
@@ -78,9 +85,11 @@ export const Navbar = () => {
                     <li
                       key={item.id}
                       className="suggestion-item"
-                      onClick={() =>
-                        window.location.replace(`/video/${item.id}`)
-                      }
+                      onClick={() => {
+                        window.location.replace(`/video/${item.id}`); // Reload the page to reset the search input
+                        setIsSearchOpen(false);
+                        setSuggestions([]);
+                      }}
                     >
                       {item.title}
                     </li>

@@ -9,7 +9,9 @@ import { useApp } from "../../ContextAPI/ContextProvider.jsx";
 import { Link } from "react-router-dom";
 export const Sidebar = () => {
   const { expand } = useApp();
-  const icons_class = expand ? "expanded-sidebar-icons" : "sidebar-icons";
+  const icons_class = expand
+    ? "expanded-sidebar-icons sidebar-icons"
+    : "sidebar-icons";
   return (
     <div className={expand ? "sidebar expanded-sidebar" : "sidebar"}>
       <Link to="/" className="your-info-icon">

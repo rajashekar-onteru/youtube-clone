@@ -176,7 +176,19 @@
     .video-section {
       position: fixed;
       top: 53px;
-      // z-index: 150;
+      z-index: 150 !important;
+      background-color: white;
+      .video-class {
+        border-radius: 0;
+      }
+    }
+  }
+}
+@media (max-width: 450px) {
+  .play-video-on-search-active {
+    margin-top: -10px !important;
+    .video-section {
+      position: unset !important;
       background-color: white;
       .video-class {
         border-radius: 0;

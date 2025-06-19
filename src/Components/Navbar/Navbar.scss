@@ -26,7 +26,6 @@
         height: 25px;
         cursor: pointer;
       }
-
       .youtube-icon {
         height: 20px;
       }
@@ -35,6 +34,9 @@
     .middle-section {
       flex: 1;
       justify-content: center;
+      .back-arrow {
+        display: none !important;
+      }
       .search-div {
         max-width: 670px;
         position: relative;
@@ -204,6 +206,8 @@
       display: none !important;
     }
     .middle-section {
+      display: flex !important;
+      justify-content: space-evenly !important;
       .search-bar {
         width: 100% !important;
         height: 30px !important;
@@ -217,6 +221,13 @@
       }
       .suggestions-list {
         display: inline !important;
+      }
+      .back-arrow {
+        display: inline !important;
+        width: 24px;
+        height: 24px;
+        margin-left: -25px;
+        cursor: pointer;
       }
       .search-icon,
       .mic-icon {
@@ -233,7 +244,7 @@
       display: none !important;
     }
     .search-div {
-      width: 85% !important;
+      width: 75% !important;
       margin-right: 24 !important;
       position: relative;
       .suggestions-list {

@@ -1,1 +1,1 @@
-export const altImg = "company logo";
+export const altImg = "logo";

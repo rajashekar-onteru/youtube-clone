@@ -22,13 +22,15 @@
 
     .first-section {
       gap: 23px;
+      min-width: 120px;
       .hamburger-menu {
         width: 25px;
         height: 25px;
         cursor: pointer;
       }
       .youtube-icon {
-        height: 20px;
+        height: 25px;
+        padding-right: 7px;
       }
     }
 
@@ -44,7 +46,7 @@
         display: flex;
         width: 100%;
         .suggestions-list {
-          font-weight: 400;
+          font-weight: 500;
           position: absolute;
           top: 45px !important;
           left: 40px;
@@ -62,7 +64,7 @@
           scrollbar-width: none;
           .suggestion-item {
             padding: 10px 14px;
-            font-size: 14px;
+            font-size: 13px;
             list-style: none; // ✅ No bullet
             padding-left: 10px !important;
             cursor: pointer;
@@ -207,6 +209,7 @@
     .last-section {
       display: none !important;
     }
+
     .middle-section {
       display: flex !important;
       justify-content: space-evenly !important;
@@ -242,6 +245,27 @@
 @media (max-width: 450px) {
   .youtube-header {
     height: 40px !important;
+    padding-bottom: 4px !important;
+    .first-section {
+      padding-top: 5px;
+    }
+    .last-section {
+      margin-top: 2px !important;
+      .profile-section {
+        width: 75px !important;
+        height: 30px !important;
+        .sign-in-link {
+          color: #065fd4;
+          text-decoration: none;
+          font-weight: 500;
+          font-size: 12px !important;
+        }
+        img {
+          height: 20px !important;
+          width: 20px !important;
+        }
+      }
+    }
     .middle-section .search-bar {
       display: none !important;
     }

@@ -1,11 +1,18 @@
-import { Navbar } from "../../Navbar/Navbar";
-import { Sidebar } from "../../Sidebar/Sidebar";
-import { Feed } from "../Feed/Feed";
 import "../Home/Home.scss";
+import "../Feed/Feed.scss";
+import { useApp } from "../../../ContextAPI/ContextProvider";
+import { VideoCard } from "../Feed/VideoCard";
 export const Home = () => {
+  const { expand } = useApp();
   return (
     <div className="home">
-      <Feed />
+      <div
+        className={
+          expand ? "sidebar-expand scroll-container" : "scroll-container"
+        }
+      >
+        <VideoCard />
+      </div>
     </div>
   );
 };

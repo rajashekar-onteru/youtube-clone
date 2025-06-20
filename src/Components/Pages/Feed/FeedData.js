@@ -16,7 +16,7 @@ import Elephant_park_video from "../../../assets/videos/Elephants_park.mp4";
 import Fish_video from "../../../assets/videos/Fish.mp4";
 import Turtoise_video from "../../../assets/videos/Turtoise.mp4";
 import Forest_video from "../../../assets/videos/Forest_video.mp4";
-export const videosData = [
+export const sampleData = [
   {
     id: 1,
     image: Deers,

@@ -4,6 +4,10 @@ export const ContextProvider = ({ children }) => {
   const [expand, setExpand] = useState(false);
   const [loading, setLoading] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [category, setCategory] = useState(0);
+  const [videoId, setVideoId] = useState();
+  const [videosData, setVideosData] = useState([]);
+  const [expanded, setExpanded] = useState(false);
   return (
     <AppContext.Provider
       value={{
@@ -13,6 +17,14 @@ export const ContextProvider = ({ children }) => {
         setLoading,
         isSearchOpen,
         setIsSearchOpen,
+        category,
+        setCategory,
+        videoId,
+        setVideoId,
+        videosData,
+        setVideosData,
+        expanded,
+        setExpanded,
       }}
     >
       {children}

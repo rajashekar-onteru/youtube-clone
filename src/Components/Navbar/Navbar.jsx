@@ -1,8 +1,8 @@
 import "../Navbar/Navbar.scss";
-import youtube_icon from "../../assets/navbar_logos/youtube_logo.svg";
+import app_text from "../../assets/navbar_logos/app_text.svg";
+import app_logo from "../../assets/navbar_logos/app_logo.svg";
 import hamburger_icon from "../../assets/navbar_logos/hamburger.svg";
 import search_icon from "../../assets/navbar_logos/search_icon.svg";
-import mic_icon from "../../assets/navbar_logos/mic_icon.svg";
 import settings_icon from "../../assets/navbar_logos/settings_icon.svg";
 import profile_icon from "../../assets/navbar_logos/profile_icon.svg";
 import back_arrow from "../../assets/navbar_logos/back_arrow.svg";
@@ -10,18 +10,26 @@ import { altImg } from "../../assets/altImg.js";
 import { Link } from "react-router-dom";
 import { useApp } from "../../ContextAPI/ContextProvider.jsx";
 import { useState } from "react";
-import { videosData } from "../Pages/Feed/FeedData.js";
 
 export const Navbar = () => {
-  const { expand, setExpand, isSearchOpen, setIsSearchOpen } = useApp();
+  const {
+    expand,
+    setExpand,
+    isSearchOpen,
+    setIsSearchOpen,
+    category,
+    setVideoId,
+    videosData,
+  } = useApp();
   const [suggestions, setSuggestions] = useState([]);
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
     const filtered = videosData?.filter((video) =>
-      video.title.toLowerCase().includes(value.toLowerCase())
+      video?.snippet?.title?.toLowerCase().includes(value.toLowerCase())
     );
     setSuggestions(value ? filtered : []);
+    console.log(filtered);
   };
 
   const debounce = (func, delay) => {
@@ -49,8 +57,9 @@ export const Navbar = () => {
             }}
             alt={altImg}
           />
-          <Link to="/">
-            <img src={youtube_icon} className="youtube-icon" alt={altImg} />
+          <Link to="/0">
+            <img src={app_logo} className="youtube-icon" alt={altImg} />
+            <img src={app_text} className="youtube-icon" alt={altImg} />
           </Link>
         </div>
         <div className="middle-section">
@@ -75,9 +84,9 @@ export const Navbar = () => {
             >
               <img src={search_icon} alt={altImg} />
             </button>
-            <button className="mic-icon">
+            {/* <button className="mic-icon">
               <img src={mic_icon} alt={altImg} />
-            </button>
+            </button> */}
             <div className="suggestions-list">
               {suggestions.length > 0 && (
                 <ul style={{ paddingLeft: "10px" }}>
@@ -86,12 +95,15 @@ export const Navbar = () => {
                       key={item.id}
                       className="suggestion-item"
                       onClick={() => {
-                        window.location.replace(`/video/${item.id}`); // Reload the page to reset the search input
+                        setVideoId(item.id);
+                        window.location.replace(
+                          `/video/${category}/${item.id}`
+                        ); // Reload the page to reset the search input
                         setIsSearchOpen(false);
                         setSuggestions([]);
                       }}
                     >
-                      {item.title}
+                      {item?.snippet?.title}
                     </li>
                   ))}
                 </ul>
@@ -104,7 +116,7 @@ export const Navbar = () => {
           <div className="settings">
             <img
               src={settings_icon}
-              style={{ cursor: "pointer" }}
+              style={{ cursor: "pointer", height: "20px" }}
               alt={altImg}
             />
           </div>

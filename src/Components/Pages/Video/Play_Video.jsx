@@ -5,18 +5,35 @@ import share from "../../../assets/play_video/share.svg";
 import profile from "../../../assets/play_video/profile.jpg";
 
 import { altImg } from "../../../assets/altImg.js";
-import { videosData } from "../Feed/FeedData.js";
 import { useApp } from "../../../ContextAPI/ContextProvider.jsx";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import ExpandableText, {
+  APIKey,
+  fetchChannelInfo,
+  fetchVideoById,
+  valueConvertor,
+} from "../../../apiData.js";
+import { useParams } from "react-router-dom";
+import moment from "moment-timezone";
 
-const Play_Video = ({ videoId }) => {
-  const item = videosData.find((v) => v?.id?.toString() === videoId);
-  const { isSearchOpen, setIsSearchOpen } = useApp();
+const Play_Video = () => {
+  const { categoryId, videoId } = useParams();
+  const { isSearchOpen, setIsSearchOpen, setCategory } = useApp();
+  const [videoInfo, setVideoInfo] = useState({});
+  const [channelInfo, setChannelInfo] = useState();
+
   useEffect(() => {
+    setCategory(parseInt(categoryId));
+    fetchVideoById(videoId, setVideoInfo);
     return () => {
       setIsSearchOpen(false);
     };
-  }, []);
+  }, [videoId]);
+
+  useEffect(() => {
+    fetchChannelInfo(setChannelInfo, videoInfo);
+  }, [videoInfo]);
+
   return (
     <div
       className={`play-video ${
@@ -24,20 +41,29 @@ const Play_Video = ({ videoId }) => {
       }`}
     >
       <div className="video-section">
-        <video className="video-class" controls autoPlay src={item?.video} />
-        <h2>{item.title}</h2>
+        <iframe
+          className="video-class"
+          src={`https://www.youtube.com/embed/${videoId}?autoplay=1`}
+          frameBorder="0"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        ></iframe>
+
+        <h2>{videoInfo?.snippet?.title}</h2>
         <div className="play-video-info">
           <p>
-            {item.views} &nbsp; &bull; {item.age}
+            {valueConvertor(videoInfo?.statistics?.viewCount)} views &bull;{" "}
+            {moment(videoInfo?.snippet?.publishedAt).fromNow()}
           </p>
           <div className="play-video-actions">
             <span>
               <img src={like} alt={altImg} />
-              1499
+              {valueConvertor(videoInfo?.statistics?.likeCount)}
             </span>
             <span>
               <img src={dislike} alt={altImg} />
-              14
+              {videoInfo?.statistics?.favoriteCount}
             </span>
             <span>
               <img src={share} alt={altImg} />
@@ -49,24 +75,25 @@ const Play_Video = ({ videoId }) => {
       <hr />
       <div className="publisher">
         <img
-          src={item.logo || profile}
+          src={
+            channelInfo
+              ? channelInfo?.snippet?.thumbnails?.medium?.url
+              : videoInfo?.snippet?.thumbnails?.medium?.url
+          }
           className="publisher_img"
           alt={altImg}
         />
         <div>
-          <p>{item.channel || "Rajasekhar O"}</p>
-          <span>1M&nbsp; Subscribers</span>
+          <p>{videoInfo?.snippet?.channelTitle}</p>
+          <span>
+            {valueConvertor(channelInfo?.statistics?.subscriberCount) || "1M"}
+            &nbsp; Subscribers
+          </span>
         </div>
         <button>Subscribe</button>
       </div>
       <div className="video-description">
-        <p>
-          Explore the wild like never before — where every frame tells a story.
-        </p>
-        <p>
-          Subscribe {item.channel || "our"} for breathtaking wildlife adventures
-          and unforgettable moments ....
-        </p>
+        <ExpandableText text={videoInfo?.snippet?.description} />
       </div>
     </div>
   );

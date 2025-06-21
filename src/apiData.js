@@ -1,5 +1,5 @@
 import { useState } from "react";
-export const APIKey = "AIzaSyADqex_oA7c7XVZyofz3hk0F1PclFE4nM8";
+import fetchEnv from "./fetchEnv";
 
 export const valueConvertor = (value) => {
   if (value >= 1000000) {
@@ -19,7 +19,9 @@ export const fetchVideosData = async (
   setLoading(true);
   try {
     const response = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=IN&videoCategoryId=${categoryId}&key=${APIKey}`
+      `${
+        fetchEnv()?.REACT_APP_BASE_API_URL
+      }&videoCategoryId=${categoryId}&key=${fetchEnv()?.REACT_APP_API_KEY}`
     );
     const data = await response.json();
     setVideosData(data?.items); // make sure sampleData is defined
@@ -33,7 +35,9 @@ export const fetchVideosData = async (
 export const fetchVideoById = async (videoId, setVideoInfo) => {
   try {
     const response = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/videos?part=snippet,contentDetails,statistics&id=${videoId}&key=${APIKey}`
+      `${fetchEnv()?.REACT_APP_GET_VIDEO_INFO_URL}&id=${videoId}&key=${
+        fetchEnv()?.REACT_APP_API_KEY
+      }`
     );
     const data = await response?.json();
 
@@ -50,7 +54,9 @@ export const fetchVideoById = async (videoId, setVideoInfo) => {
 export const fetchChannelInfo = async (setChannelInfo, videoInfo) => {
   try {
     const resp = await fetch(
-      `https://youtube.googleapis.com/youtube/v3/channels?part=snippet,contentDetails,statistics&id=${videoInfo?.snippet?.channelId}&key=${APIKey}`
+      `${fetchEnv()?.REACT_APP_GET_CHANNEL_INFO_URL}&id=${
+        videoInfo?.snippet?.channelId
+      }&key=${fetchEnv()?.REACT_APP_API_KEY}`
     );
     const data = await resp?.json();
     setChannelInfo(data?.items[0]);

@@ -6,7 +6,7 @@ import news_icon from "../../assets/sidebar_icons/news_icon.svg";
 import gaming_icon from "../../assets/sidebar_icons/gaming_icon.svg";
 import { altImg } from "../../assets/altImg.js";
 import { useApp } from "../../ContextAPI/ContextProvider.jsx";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export const Sidebar = () => {
   const { expand, category, setCategory } = useApp();

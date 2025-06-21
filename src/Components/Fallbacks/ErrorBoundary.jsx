@@ -1,5 +1,16 @@
 import React from "react";
-
+export const FallBackScreen = () => {
+  return (
+    <div className="notfound-container">
+      <h1> 😢 Oops! Something went wrong.</h1>
+      <p>Please try refreshing the page.</p>
+      <br />
+      <p onClick={() => window.location.reload()} className="back-home">
+        Refresh
+      </p>
+    </div>
+  );
+};
 class ErrorBoundary extends React.Component {
   constructor(props) {
     super(props);
@@ -18,19 +29,7 @@ class ErrorBoundary extends React.Component {
 
   render() {
     if (this.state.hasError) {
-      return (
-        <div
-          style={{
-            padding: "2rem",
-            textAlign: "center",
-            color: "red",
-            fontWeight: "bold",
-          }}
-        >
-          😢 Oops! Something went wrong. <br />
-          Please try refreshing the page.
-        </div>
-      );
+      return <FallBackScreen />;
     }
 
     return this.props.children;

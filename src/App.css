@@ -15,7 +15,18 @@
   .show-more {
     font-size: 12px !important;
   }
+  .notfound-container {
+    transform: translate(0, 0) !important;
+  }
 }
+@media (max-width: 450px) {
+  .notfound-container {
+    h1 {
+      font-size: medium;
+    }
+  }
+}
+
 .video-loading-overlay {
   position: fixed;
   top: 0;

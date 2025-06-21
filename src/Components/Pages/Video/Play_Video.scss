@@ -7,13 +7,14 @@
   animation: fadeIn 0.8s ease-in-out;
   .video-section {
     .video-class {
-      height: 87vh;
+      height: 83vh;
       width: 100%;
       border-radius: 15px;
+      // margin: 10px 4% !important;
       box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
     }
     h2 {
-      margin-top: 20px;
+      margin-top: 8px;
       font-size: 22px;
       color: #222;
     }
@@ -23,7 +24,7 @@
     height: 50px;
     width: 50px;
     border-radius: 50%;
-    object-position: cover;
+    object-fit: cover;
     margin-right: 15px;
   }
   .play-video-info {
@@ -95,7 +96,7 @@
     }
   }
 }
-@media (max-width: 1200px) and (min-width: 950px) {
+@media (max-width: 1300px) and (min-width: 950px) {
   .play-video {
     padding: 5px 0px 5px 0px !important;
     h2 {
@@ -108,24 +109,47 @@
       }
     }
     .video-class {
-      height: auto !important;
+      height: 70vh !important;
+    }
+  }
+}
+@media (max-width: 950px) and (min-width: 800px) {
+  .play-video {
+    padding: 0 !important;
+    .video-class {
+      height: 60vh !important;
+    }
+  }
+}
+@media (max-width: 800px) and (min-width: 550px) {
+  .play-video {
+    padding: 0 !important;
+    .video-class {
+      height: 45vh !important;
     }
   }
 }
 @media (max-width: 550px) {
   .play-video {
     .video-class {
-      height: auto !important;
+      height: 37vh !important;
+      border-radius: 0 !important;
     }
     h2 {
       margin: 5px 0px 0px 5px !important;
-      font-size: 15px !important;
+      font-size: 14px !important;
+      max-height: 40px;
+      overflow: hidden;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      line-height: 20px;
     }
     .publisher_img {
       height: 35px;
       width: 35px;
       border-radius: 50%;
-      object-position: cover;
+      object-fit: cover;
     }
     .play-video-info {
       margin: 5px 0px 0px 5px !important;
@@ -170,12 +194,40 @@
     }
   }
 }
+@media (max-width: 450px) and (min-width: 400px) {
+  .play-video {
+    margin-top: 390px !important;
+    .video-class {
+      height: 35vh !important;
+    }
+  }
+}
+@media (max-width: 400px) and (min-width: 350px) {
+  .play-video {
+    margin-top: 350px !important;
+    .video-section {
+      .video-class {
+        height: 30vh !important;
+      }
+    }
+  }
+}
+@media (max-width: 350px) and (min-width: 300px) {
+  .play-video {
+    margin-top: 327px !important;
+    .video-section {
+      .video-class {
+        height: 25vh !important;
+      }
+    }
+  }
+}
 @media (max-width: 450px) {
   .play-video {
     margin-top: 345px;
     .video-section {
       position: fixed;
-      top: 53px;
+      top: 48px;
       z-index: 150 !important;
       background-color: white;
       .video-class {
@@ -206,31 +258,23 @@
     margin-top: 320px;
   }
 }
-@media (min-width: 325px) and (max-width: 345px) {
-  .play-video {
-    margin-top: 325px;
-  }
-}
-@media (min-width: 345px) and (max-width: 380px) {
-  .play-video {
-    margin-top: 320px;
-  }
-}
-@media (min-width: 380px) and (max-width: 410px) {
-  .play-video {
-    margin-top: 350px;
-  }
-}
-@media (max-width: 450px) and (min-width: 410px) {
-  .play-video {
-    margin-top: 370px;
-  }
-}
-@media (max-width: 950px) and (min-width: 550px) {
-  .play-video {
-    padding: 0 !important;
-    .video-class {
-      height: auto !important;
-    }
-  }
-}
+// @media (min-width: 325px) and (max-width: 345px) {
+//   .play-video {
+//     margin-top: 325px;
+//   }
+// }
+// @media (min-width: 345px) and (max-width: 380px) {
+//   .play-video {
+//     margin-top: 320px;
+//   }
+// }
+// @media (min-width: 380px) and (max-width: 410px) {
+//   .play-video {
+//     margin-top: 350px;
+//   }
+// }
+// @media (max-width: 450px) and (min-width: 410px) {
+//   .play-video {
+//     margin-top: 370px;
+//   }
+// }

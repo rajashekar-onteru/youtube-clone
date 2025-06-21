@@ -12,6 +12,9 @@
   .sidebar-expand {
     margin-left: 0px !important;
   }
+  .show-more {
+    font-size: 12px !important;
+  }
 }
 .video-loading-overlay {
   position: fixed;
@@ -54,6 +57,28 @@
 }
 .sidebar-expand {
   margin-left: 70px;
+}
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* clamp to 2 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  /* position: relative; */
+  margin-bottom: 4px;
+  white-space: normal;
+}
+
+.description.expanded {
+  -webkit-line-clamp: unset;
+  display: block;
+}
+
+.show-more {
+  color: black;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
 }
 @keyframes bounceDot {
   0%,

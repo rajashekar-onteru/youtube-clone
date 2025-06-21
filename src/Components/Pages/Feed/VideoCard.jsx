@@ -4,6 +4,7 @@ import { useApp } from "../../../ContextAPI/ContextProvider";
 import { fetchVideosData, valueConvertor } from "../../../apiData";
 import moment from "moment-timezone";
 import { useEffect } from "react";
+import { FallBackScreen } from "../../Fallbacks/ErrorBoundary";
 export const VideoCard = () => {
   const { categoryId = 0 } = useParams();
   const {
@@ -35,7 +36,7 @@ export const VideoCard = () => {
 
   return (
     <>
-      {loading && (
+      {loading ? (
         <div className="video-loading-overlay">
           <div className="video-dots-loader">
             <div className="video-dot"></div>
@@ -43,6 +44,10 @@ export const VideoCard = () => {
             <div className="video-dot"></div>
           </div>
         </div>
+      ) : loading !== true && videosData?.length === 0 ? (
+        <FallBackScreen />
+      ) : (
+        <></>
       )}
       {videosData?.map((video) => (
         <div className="video-container" key={video.id}>

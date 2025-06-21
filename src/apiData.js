@@ -1,5 +1,4 @@
 import { useState } from "react";
-import fetchEnv from "./fetchEnv";
 
 export const valueConvertor = (value) => {
   if (value >= 1000000) {
@@ -10,7 +9,7 @@ export const valueConvertor = (value) => {
     return value;
   }
 };
-
+const API_KEY = process.env.REACT_APP_API_KEY;
 export const fetchVideosData = async (
   categoryId,
   setLoading,
@@ -19,9 +18,7 @@ export const fetchVideosData = async (
   setLoading(true);
   try {
     const response = await fetch(
-      `${
-        fetchEnv()?.REACT_APP_BASE_API_URL
-      }&videoCategoryId=${categoryId}&key=${fetchEnv()?.REACT_APP_API_KEY}`
+      `${process.env.REACT_APP_BASE_API_URL}&videoCategoryId=${categoryId}&key=${API_KEY}`
     );
     const data = await response.json();
     setVideosData(data?.items); // make sure sampleData is defined
@@ -35,9 +32,7 @@ export const fetchVideosData = async (
 export const fetchVideoById = async (videoId, setVideoInfo) => {
   try {
     const response = await fetch(
-      `${fetchEnv()?.REACT_APP_GET_VIDEO_INFO_URL}&id=${videoId}&key=${
-        fetchEnv()?.REACT_APP_API_KEY
-      }`
+      `${process.env.REACT_APP_GET_VIDEO_INFO_URL}&id=${videoId}&key=${API_KEY}`
     );
     const data = await response?.json();
 
@@ -54,9 +49,7 @@ export const fetchVideoById = async (videoId, setVideoInfo) => {
 export const fetchChannelInfo = async (setChannelInfo, videoInfo) => {
   try {
     const resp = await fetch(
-      `${fetchEnv()?.REACT_APP_GET_CHANNEL_INFO_URL}&id=${
-        videoInfo?.snippet?.channelId
-      }&key=${fetchEnv()?.REACT_APP_API_KEY}`
+      `${process.env.REACT_APP_GET_CHANNEL_INFO_URL}&id=${videoInfo?.snippet?.channelId}&key=${API_KEY}`
     );
     const data = await resp?.json();
     setChannelInfo(data?.items[0]);

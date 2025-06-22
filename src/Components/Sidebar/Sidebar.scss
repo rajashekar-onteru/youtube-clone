@@ -74,7 +74,7 @@
     left: 0;
     right: 0;
     bottom: 0;
-    top: 92vh;
+    top: 93vh;
     background-color: white;
     z-index: 100;
     display: flex;
@@ -93,5 +93,10 @@
     align-items: center;
     border-radius: 10px;
     cursor: pointer;
+  }
+}
+@media (max-width: 450px) {
+  .sidebar {
+    top: 94vh;
   }
 }

@@ -196,7 +196,6 @@
 }
 @media (max-width: 450px) and (min-width: 400px) {
   .play-video {
-    margin-top: 390px !important;
     .video-class {
       height: 35vh !important;
     }
@@ -204,7 +203,6 @@
 }
 @media (max-width: 400px) and (min-width: 350px) {
   .play-video {
-    margin-top: 350px !important;
     .video-section {
       .video-class {
         height: 30vh !important;
@@ -212,27 +210,28 @@
     }
   }
 }
-@media (max-width: 350px) and (min-width: 300px) {
+
+@media (max-width: 350px) {
   .play-video {
-    margin-top: 327px !important;
     .video-section {
       .video-class {
-        height: 25vh !important;
+        height: 27vh !important;
       }
     }
   }
 }
 @media (max-width: 450px) {
   .play-video {
-    margin-top: 345px;
     .video-section {
-      position: fixed;
-      top: 48px;
-      z-index: 150 !important;
-      background-color: white;
       .video-class {
+        top: 48px;
+        position: fixed;
+        z-index: 150 !important;
         border-radius: 0;
       }
+    }
+    .subscribe {
+      margin-right: 5px;
     }
   }
 }
@@ -248,33 +247,3 @@
     }
   }
 }
-@media (max-width: 317px) {
-  .play-video {
-    margin-top: 330px;
-  }
-}
-@media (max-width: 325px) and (min-width: 317px) {
-  .play-video {
-    margin-top: 320px;
-  }
-}
-// @media (min-width: 325px) and (max-width: 345px) {
-//   .play-video {
-//     margin-top: 325px;
-//   }
-// }
-// @media (min-width: 345px) and (max-width: 380px) {
-//   .play-video {
-//     margin-top: 320px;
-//   }
-// }
-// @media (min-width: 380px) and (max-width: 410px) {
-//   .play-video {
-//     margin-top: 350px;
-//   }
-// }
-// @media (max-width: 450px) and (min-width: 410px) {
-//   .play-video {
-//     margin-top: 370px;
-//   }
-// }

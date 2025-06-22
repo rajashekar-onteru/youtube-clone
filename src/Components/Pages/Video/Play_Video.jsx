@@ -90,7 +90,7 @@ const Play_Video = () => {
             &nbsp; Subscribers
           </span>
         </div>
-        <button>Subscribe</button>
+        <button className="subscribe">Subscribe</button>
       </div>
       <div className="video-description">
         <ExpandableText text={videoInfo?.snippet?.description} />

@@ -38,7 +38,7 @@ export const Navbar = () => {
         clearTimeout(timeoutId);
       }
       timeoutId = setTimeout(() => {
-        func.apply(this, args); // ✅ Use apply to pass correct context and arguments
+        func.apply(this, args);
       }, delay);
     };
   };
@@ -83,9 +83,6 @@ export const Navbar = () => {
             >
               <img src={search_icon} alt={altImg} />
             </button>
-            {/* <button className="mic-icon">
-              <img src={mic_icon} alt={altImg} />
-            </button> */}
             <div className="suggestions-list">
               {suggestions.length > 0 && (
                 <ul style={{ paddingLeft: "10px" }}>
@@ -109,7 +106,6 @@ export const Navbar = () => {
               )}{" "}
             </div>
           </div>
-          {/* 🔽 Suggestions Dropdown */}
         </div>
         <div className="last-section">
           <div className="profile-section">

@@ -2,13 +2,11 @@ import "../Video/Play_Video.scss";
 import like from "../../../assets/play_video/like.svg";
 import dislike from "../../../assets/play_video/dislike.svg";
 import share from "../../../assets/play_video/share.svg";
-import profile from "../../../assets/play_video/profile.jpg";
 
 import { altImg } from "../../../assets/altImg.js";
 import { useApp } from "../../../ContextAPI/ContextProvider.jsx";
 import { useEffect, useState } from "react";
 import ExpandableText, {
-  APIKey,
   fetchChannelInfo,
   fetchVideoById,
   valueConvertor,

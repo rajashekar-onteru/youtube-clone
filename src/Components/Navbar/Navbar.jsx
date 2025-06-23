@@ -3,7 +3,6 @@ import app_text from "../../assets/navbar_logos/app_text.svg";
 import app_logo from "../../assets/navbar_logos/app_logo.svg";
 import hamburger_icon from "../../assets/navbar_logos/hamburger.svg";
 import search_icon from "../../assets/navbar_logos/search_icon.svg";
-import settings_icon from "../../assets/navbar_logos/settings_icon.svg";
 import profile_icon from "../../assets/navbar_logos/profile_icon.svg";
 import back_arrow from "../../assets/navbar_logos/back_arrow.svg";
 import { altImg } from "../../assets/altImg.js";
@@ -113,13 +112,6 @@ export const Navbar = () => {
           {/* 🔽 Suggestions Dropdown */}
         </div>
         <div className="last-section">
-          <div className="settings">
-            <img
-              src={settings_icon}
-              style={{ cursor: "pointer", height: "20px" }}
-              alt={altImg}
-            />
-          </div>
           <div className="profile-section">
             <img src={profile_icon} alt={altImg} />
             <a

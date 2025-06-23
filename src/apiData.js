@@ -60,13 +60,18 @@ export const fetchChannelInfo = async (setChannelInfo, videoInfo) => {
 
 export const ExpandableText = ({ text }) => {
   const [expanded, setExpanded] = useState(false);
+  const wordLimit = 50;
+  const words = text?.trim()?.split(/\s+/);
+  const isLong = words?.length > wordLimit;
 
   return (
     <div>
       <p className={`description ${expanded ? "expanded" : ""}`}>{text}</p>
-      <span className="show-more" onClick={() => setExpanded(!expanded)}>
-        {expanded ? "Show Less" : "...more"}
-      </span>
+      {isLong && (
+        <span className="show-more" onClick={() => setExpanded(!expanded)}>
+          {expanded ? "Show Less" : "...more"}
+        </span>
+      )}
     </div>
   );
 };

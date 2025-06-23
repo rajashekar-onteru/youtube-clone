@@ -75,7 +75,6 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
-  /* position: relative; */
   margin-bottom: 4px;
   white-space: normal;
 }

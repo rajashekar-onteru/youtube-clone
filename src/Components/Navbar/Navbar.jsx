@@ -8,7 +8,8 @@ import back_arrow from "../../assets/navbar_logos/back_arrow.svg";
 import { altImg } from "../../assets/altImg.js";
 import { Link } from "react-router-dom";
 import { useApp } from "../../ContextAPI/ContextProvider.jsx";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDebounce } from "../../apiData.js";
 
 export const Navbar = () => {
   const {
@@ -16,34 +17,29 @@ export const Navbar = () => {
     setExpand,
     isSearchOpen,
     setIsSearchOpen,
-    category,
     setVideoId,
+    tab,
     videosData,
   } = useApp();
   const [suggestions, setSuggestions] = useState([]);
+  const [searchValue, setSearchValue] = useState();
 
   const handleSearchChange = (e) => {
     const value = e.target.value;
+    dispatchSearchDebounce(value);
+  };
+
+  const dispatchSearchDebounce = useDebounce((value) => {
+    setSearchValue(value);
+  }, 500);
+
+  useEffect(() => {
     const filtered = videosData?.filter((video) =>
-      video?.snippet?.title?.toLowerCase().includes(value.toLowerCase())
+      video?.snippet?.title?.toLowerCase().includes(searchValue?.toLowerCase())
     );
-    setSuggestions(value ? filtered : []);
-    console.log(filtered);
-  };
-
-  const debounce = (func, delay) => {
-    let timeoutId;
-    return function (...args) {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
-      }
-      timeoutId = setTimeout(() => {
-        func.apply(this, args);
-      }, delay);
-    };
-  };
-
-  const debouncedHandleSearchChange = debounce(handleSearchChange, 300);
+    setSuggestions(searchValue ? filtered : []);
+    // fetchVideosBySearch(searchValue, setSuggestions);
+  }, [searchValue]);
   return (
     <div className="navbar">
       <div className={`youtube-header ${isSearchOpen ? "search-active" : ""}`}>
@@ -56,7 +52,7 @@ export const Navbar = () => {
             }}
             alt={altImg}
           />
-          <Link to="/0">
+          <Link to={`/Home/0`}>
             <img src={app_logo} className="youtube-icon" alt={altImg} />
             <img src={app_text} className="youtube-icon" alt={altImg} />
           </Link>
@@ -75,7 +71,7 @@ export const Navbar = () => {
               type="text"
               className="search-bar"
               placeholder="Search"
-              onChange={debouncedHandleSearchChange}
+              onChange={handleSearchChange}
             />
             <button
               className="search-icon"
@@ -84,19 +80,20 @@ export const Navbar = () => {
               <img src={search_icon} alt={altImg} />
             </button>
             <div className="suggestions-list">
-              {suggestions.length > 0 && (
+              {suggestions?.length > 0 && (
                 <ul style={{ paddingLeft: "10px" }}>
-                  {suggestions.map((item) => (
+                  {suggestions?.map((item) => (
                     <li
                       key={item.id}
                       className="suggestion-item"
                       onClick={() => {
                         setVideoId(item.id);
                         window.location.replace(
-                          `/video/${category}/${item.id}`
+                          `/${tab}/video/${item?.snippet?.categoryId}/${item.id}`
                         ); // Reload the page to reset the search input
                         setIsSearchOpen(false);
                         setSuggestions([]);
+                        setSearchValue();
                       }}
                     >
                       {item?.snippet?.title}

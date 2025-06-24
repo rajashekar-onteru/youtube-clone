@@ -9,55 +9,56 @@ import { useApp } from "../../ContextAPI/ContextProvider.jsx";
 import { useNavigate } from "react-router-dom";
 
 export const Sidebar = () => {
-  const { expand, category, setCategory } = useApp();
+  const { expand, setCategoryId, tab, setTab } = useApp();
   const icons_class = expand
     ? "expanded-sidebar-icons sidebar-icons"
     : "sidebar-icons";
 
   const navigate = useNavigate();
   const getClassName = (id) => {
-    return category === id ? "sidebar-active" : "";
+    return tab === id ? "sidebar-active" : "";
   };
 
-  const handleClick = (category) => {
-    setCategory(category);
-    navigate(`/${category}`);
+  const handleClick = (categoryId, tab) => {
+    setCategoryId(categoryId);
+    setTab(tab);
+    navigate(`/${tab}/${categoryId}`);
     window.scrollTo({ top: 0 });
   };
 
   return (
     <div className={expand ? "sidebar expanded-sidebar" : "sidebar"}>
       <div
-        className={`${icons_class} ${getClassName(0)}`}
-        onClick={() => handleClick(0)}
+        className={`${icons_class} ${getClassName("Home")}`}
+        onClick={() => handleClick(0, "Home")}
       >
         <img src={home_icon} alt={altImg} />
         Home
       </div>
       <div
-        className={`${icons_class} ${getClassName(25)}`}
-        onClick={() => handleClick(25)}
+        className={`${icons_class} ${getClassName("News")}`}
+        onClick={() => handleClick(25, "News")}
       >
         <img src={news_icon} alt={altImg} />
         News
       </div>
       <div
-        className={`${icons_class} ${getClassName(17)}`}
-        onClick={() => handleClick(17)}
+        className={`${icons_class} ${getClassName("Sports")}`}
+        onClick={() => handleClick(17, "Sports")}
       >
         <img src={sports_icon} alt={altImg} />
         <span>Sports</span>
       </div>
       <div
-        className={`${icons_class} ${getClassName(10)}`}
-        onClick={() => handleClick(10)}
+        className={`${icons_class} ${getClassName("Music")}`}
+        onClick={() => handleClick(10, "Music")}
       >
         <img src={music_icon} alt={altImg} />
         <span>Music</span>
       </div>
       <div
-        className={`${icons_class} ${getClassName(20)}`}
-        onClick={() => handleClick(20)}
+        className={`${icons_class} ${getClassName("Gaming")}`}
+        onClick={() => handleClick(20, "Gaming")}
       >
         <img src={gaming_icon} alt={altImg} />
         <span>Gaming</span>

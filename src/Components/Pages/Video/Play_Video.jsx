@@ -15,21 +15,23 @@ import { useParams } from "react-router-dom";
 import moment from "moment-timezone";
 
 const Play_Video = () => {
-  const { categoryId, videoId } = useParams();
-  const { isSearchOpen, setIsSearchOpen, setCategory } = useApp();
+  const { categoryId, tab, videoId } = useParams();
+  const { isSearchOpen, setIsSearchOpen, setCategoryId, setTab } = useApp();
   const [videoInfo, setVideoInfo] = useState({});
   const [channelInfo, setChannelInfo] = useState();
 
   useEffect(() => {
-    setCategory(parseInt(categoryId));
-    fetchVideoById(videoId, setVideoInfo);
+    setCategoryId(parseInt(categoryId));
+    setTab(tab);
+    videoId && fetchVideoById(videoId, setVideoInfo);
     return () => {
       setIsSearchOpen(false);
     };
   }, [videoId]);
 
   useEffect(() => {
-    fetchChannelInfo(setChannelInfo, videoInfo);
+    videoInfo?.snippet?.channelId &&
+      fetchChannelInfo(setChannelInfo, videoInfo);
   }, [videoInfo]);
 
   return (

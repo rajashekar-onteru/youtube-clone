@@ -195,6 +195,7 @@
 }
 @media (max-width: 450px) and (min-width: 400px) {
   .play-video {
+    margin-top: 41vh;
     .video-class {
       height: 35vh !important;
     }
@@ -202,6 +203,7 @@
 }
 @media (max-width: 400px) and (min-width: 350px) {
   .play-video {
+    margin-top: 36vh;
     .video-section {
       .video-class {
         height: 30vh !important;
@@ -212,6 +214,7 @@
 
 @media (max-width: 350px) {
   .play-video {
+    margin-top: 33vh;
     .video-section {
       .video-class {
         height: 27vh !important;
@@ -238,10 +241,11 @@
   .play-video-on-search-active {
     margin-top: -10px !important;
     .video-section {
-      position: unset !important;
       background-color: white;
       .video-class {
         border-radius: 0;
+        top: 0px;
+        position: unset !important;
       }
     }
   }

@@ -6,31 +6,33 @@ import moment from "moment-timezone";
 import { useEffect } from "react";
 import { FallBackScreen } from "../../Fallbacks/ErrorBoundary";
 export const VideoCard = () => {
-  const { categoryId = 0 } = useParams();
+  const { categoryId = 0, tab = "Home" } = useParams();
   const {
     loading,
     setLoading,
     setVideoId,
     videosData,
     setVideosData,
-    setCategory,
+    setCategoryId,
+    setTab,
   } = useApp();
   const navigate = useNavigate();
   const { setExpand } = useApp();
 
-  const handleClick = (id) => {
+  const handleClick = (id, categoryId) => {
     setLoading(true);
     setTimeout(() => {
       window.scrollTo({ top: 0 });
       setExpand(true);
       setVideoId(id);
-      navigate(`/video/${categoryId}/${id}`);
+      navigate(`/${tab}/video/${categoryId}/${id}`);
       setLoading(false);
     }, 500);
   };
 
   useEffect(() => {
-    setCategory(parseInt(categoryId));
+    setCategoryId(parseInt(categoryId));
+    setTab(tab);
     fetchVideosData(categoryId, setLoading, setVideosData);
   }, [categoryId]);
 
@@ -53,7 +55,7 @@ export const VideoCard = () => {
         <div className="video-container" key={video.id}>
           <div
             className="video-classname"
-            onClick={() => handleClick(video?.id)}
+            onClick={() => handleClick(video?.id, video?.snippet?.categoryId)}
           >
             <div className="thumbnail-class">
               <img

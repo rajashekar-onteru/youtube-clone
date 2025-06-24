@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { Route, Routes, useParams } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Navbar } from "./Components/Navbar/Navbar";
 import { Home } from "./Components/Pages/Home/Home";
@@ -17,8 +17,8 @@ function App() {
         <Sidebar />
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/:categoryId" element={<Home />} />
-          <Route path="/video/:categoryId/:videoId" element={<Video />} />
+          <Route path="/:tab/:categoryId" element={<Home />} />
+          <Route path="/:tab/video/:categoryId/:videoId" element={<Video />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </ErrorBoundary>

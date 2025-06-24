@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 export const valueConvertor = (value) => {
   if (value >= 1000000) {
@@ -9,6 +9,21 @@ export const valueConvertor = (value) => {
     return value;
   }
 };
+export const useDebounce = (callback, wait = 0) => {
+  let timeoutId;
+  return useCallback(
+    (...args) => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      timeoutId = setTimeout(() => {
+        callback.apply(this, args);
+      }, wait);
+    },
+    [callback, wait]
+  );
+};
+
 const API_KEY = process.env.REACT_APP_API_KEY;
 export const fetchVideosData = async (
   categoryId,
@@ -28,7 +43,18 @@ export const fetchVideosData = async (
     setLoading(false);
   }
 };
-
+// export const fetchVideosBySearch = async (keyword, setSuggestions) => {
+//   try {
+//     const response = await fetch(
+//       `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${keyword}&key=${API_KEY}`
+//     );
+//     const data = await response.json();
+//     setSuggestions(data?.items); // make sure sampleData is defined
+//   } catch (error) {
+//     console.error("Error fetching videos:", error);
+//   } finally {
+//   }
+// };
 export const fetchVideoById = async (videoId, setVideoInfo) => {
   try {
     const response = await fetch(
